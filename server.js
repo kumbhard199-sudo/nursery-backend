@@ -11,8 +11,8 @@ async function startServer() {
     // Connect to database
     await connectDB();
 
-    // Start backup scheduler
-    if (process.env.NODE_ENV !== 'test') {
+    // Start backup scheduler (skip on Render's ephemeral filesystem)
+    if (process.env.NODE_ENV !== 'test' && process.env.RENDER_ENV !== 'true') {
       backupScheduler.start();
     }
 

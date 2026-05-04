@@ -25,7 +25,9 @@ app.use(helmet());
 
 // CORS middleware
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' ? false : '*',
+  origin: process.env.NODE_ENV === 'production' 
+    ? (process.env.FRONTEND_URL || 'http://localhost:5173')
+    : '*',
   credentials: true,
 }));
 
